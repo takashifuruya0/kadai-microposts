@@ -13,4 +13,14 @@ Rails.application.routes.draw do
 
 # Microposts
 	resources  :microposts, only: [:create, :destroy]
+
+# Follow
+	resources :users, only: [:index, :show, :new, :create] do
+		member do
+			get :followings
+			get :followers
+		end
+	end
+	resources :microposts, only: [:create, :destroy]
+	resources :relationships, only: [:create, :destroy]
 end
