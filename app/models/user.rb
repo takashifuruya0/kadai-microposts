@@ -23,10 +23,28 @@ class User < ApplicationRecord
     relationship.destroy if relationship
   end
   
+	has_many :favarites
+	has_many :likings, through: :favarites, source: :micropost
+
+	def like(micropost)
+		unless self.likings == microposts
+			self.favarites.find_or_create_by(micropost_id: micropost.id)
+		end
+	end
+
+	def unlike(micropost)
+		favarite = self.favarites.find_by(micropost_id: micropost.id)
+		favarite.destroy if favarite
+	end
+	
   def following?(other_user)
     self.followings.include?(other_user)
   end
 	
+  def liking?(micropost)
+	  self.likings.include?(micropost)
+  end
+  
 	def feed_microposts
 		Micropost.where(user_id: self.following_ids + [self.id] )
 	end
