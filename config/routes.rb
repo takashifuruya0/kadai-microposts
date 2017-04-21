@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 # Like
 	resources :users, only: [:index, :show, :new, :create] do
 		member do
-			get :likings
+			get :favarites
 		end
 	end
 	resources :favarites, only: [:create, :destroy]

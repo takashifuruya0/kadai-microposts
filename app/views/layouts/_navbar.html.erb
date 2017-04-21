@@ -18,6 +18,12 @@
             <ul class="dropdown-menu">
               <li><%= link_to "My profile", user_path(current_user) %></li>
               <li role="separator" class="divider"></li>
+              <li><%= link_to "My followings", followings_user_path(current_user) %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to "My followers", followers_user_path(current_user) %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to "My favorites", favarites_user_path(current_user) %></li>
+              <li role="separator" class="divider"></li>
               <li><%= link_to "Logout", logout_path, method: :delete %></li>
             </ul>
           </li>
