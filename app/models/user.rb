@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_secure_password
 
 	has_many :microposts
+	
 	has_many :relationships
 	has_many :followings, through: :relationships, source: :follow
 	has_many :reverses_of_relationship, class_name: "Relationship", foreign_key: "follow_id"
@@ -27,7 +28,7 @@ class User < ApplicationRecord
 	has_many :likings, through: :favarites, source: :micropost
 
 	def like(micropost)
-		unless self.likings == microposts
+		unless self.likings == micropost
 			self.favarites.find_or_create_by(micropost_id: micropost.id)
 		end
 	end
